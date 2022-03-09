@@ -13,12 +13,27 @@ const getElement = (selector, list) => {
 };
 
 // traversing the dom
-const btns = getElement('.question-btn', true);
+// const btns = getElement('.question-btn', true);
 
-btns.forEach(function (btn) {
-  btn.addEventListener('click', function (e) {
-    const question = e.currentTarget.parentElement.parentElement;
+// btns.forEach(function (btn) {
+//   btn.addEventListener('click', function (e) {
+//     const question = e.currentTarget.parentElement.parentElement;
 
-    question.classList.toggle('show-text');
+//     question.classList.toggle('show-text');
+//   });
+// });
+
+const questions = document.querySelectorAll('.question');
+
+questions.forEach(function (currentQuestion) {
+  const btn = currentQuestion.querySelector('.question-btn');
+
+  btn.addEventListener('click', function () {
+    questions.forEach(function (question) {
+      if (question !== currentQuestion) {
+        question.classList.remove('show-text');
+      }
+    });
+    currentQuestion.classList.toggle('show-text');
   });
 });
